@@ -1,0 +1,83 @@
+  # tester-console:
+  #   build:
+  #     context: ../src/ConsoleAppTesteRedeDosContainers
+  #     dockerfile: Dockerfile
+  #   container_name: TesterConsole-container
+  #   networks:
+  #     - minhaRede
+  #   depends_on:
+  #     - rabbitmq
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: RabbitMQ-Container
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - minhaRede
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: SQLServer-Container
+    ports:
+        - "1433:1433"
+    environment:
+        SA_PASSWORD: "Ad4c5a@!!56"
+        ACCEPT_EULA: "Y"
+    networks:
+        - minhaRede
+
+  api:
+    build:
+      context: ../src/TechChallenge4.Api
+      dockerfile: Dockerfile
+    container_name: API-Container
+    ports:
+      - "5000:8080"
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    environment:
+      - RabbitMQ__HostName=rabbitmq
+      - SqlServer__HostName=sqlserver 
+    networks:
+      - minhaRede 
+
+  consumidor:
+    build:
+      context: ../src/TechChallenge4.Consumidor
+      dockerfile: Dockerfile
+    container_name: Consumidor-Container
+    ports:
+      - "4000:8080"
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    environment:
+      - RabbitMQ__HostName=rabbitmq
+      - SqlServer__HostName=sqlserver 
+    networks:
+      - minhaRede
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - minhaRede
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - minhaRede
+
+networks:
+  minhaRede:
+    driver: bridge
+    name: nomeDaMinhaRede

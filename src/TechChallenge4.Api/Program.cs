@@ -15,7 +15,7 @@ namespace TechChallenge4.Api
             var builder = WebApplication.CreateBuilder(args);
             builder.ConfigurarEMapearDependenciasDaAplicacao(tipoDeOrm);
 
-            var app = builder.Build();
+            var app = builder.Build(); 
 
             //if (app.Environment.IsDevelopment())
             //{

@@ -13,6 +13,23 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
+      - name: Configurar .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restaurar pacotes NuGet
+        run: dotnet restore src/TechChallenge.Api/TechChallenge.Api.csproj
+
+      - name: Build do projeto
+        run: dotnet build src/TechChallenge.Api/TechChallenge.Api.csproj --configuration Release --no-restore
+
+      - name: Executar testes
+        run: dotnet test src/TechChallenge.Api.Tests/TechChallenge.Api.Tests.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Publicar aplicação
+        run: dotnet publish src/TechChallenge.Api/TechChallenge.Api.csproj -c Release -o out
+
       - name: Login no Docker Hub
         uses: docker/login-action@v2
         with:

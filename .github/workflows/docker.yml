@@ -37,10 +37,10 @@ jobs:
         run: docker build -t techchallenge4:latest -f Docker/Dockerfile.Api .
 
       - name: Run Docker container
-        run: docker run -d -p 8080:80 TechChallenge4:latest
+        run: docker run -d -p 8080:80 techchallenge4:latest
 
       - name: Check running containers
         run: docker ps
 
       - name: Check container logs
-        run: docker logs $(docker ps -q --filter ancestor=TechChallenge4:latest)
+        run: docker logs $(docker ps -q --filter ancestor=techchallenge4:latest)

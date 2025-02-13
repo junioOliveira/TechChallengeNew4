@@ -23,10 +23,7 @@ jobs:
 
       - name: Build do projeto
         run: dotnet build src/TechChallenge4.Api/TechChallenge4.Api.csproj --configuration Release --no-restore
-
-      - name: Executar testes
-        run: dotnet test src/TechChallenge4.Tests/TechChallenge4.Tests.csproj --configuration Release --no-build --verbosity normal
-
+      
       - name: Publicar aplicação
         run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release -o out
 

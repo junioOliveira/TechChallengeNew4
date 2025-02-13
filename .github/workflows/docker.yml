@@ -34,7 +34,7 @@ jobs:
           password: ${{ vars.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t TechChallenge4:latest -f Docker/Dockerfile.Api .
+        run: docker build -t techchallenge4:latest -f Docker/Dockerfile.Api .
 
       - name: Run Docker container
         run: docker run -d -p 8080:80 TechChallenge4:latest

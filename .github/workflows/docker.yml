@@ -25,6 +25,6 @@ jobs:
         run: dotnet build src/TechChallenge4.Api/TechChallenge4.Api.csproj --configuration Release --no-restore
       
       - name: Publicar aplicação
-        run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release 
+        run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release -o src/TechChallenge4.Api/publish
 
       

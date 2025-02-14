@@ -19,7 +19,7 @@ namespace TechChallenge4.Api
 
             //if (app.Environment.IsDevelopment())
             //{
-                InicializarDatabase(app, tipoDeOrm);
+                //InicializarDatabase(app, tipoDeOrm);
 
                 app.UseSwagger();
                 app.UseSwaggerUI();

@@ -1,0 +1,51 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main  # Roda sempre que houver push na branch main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar .NET 8
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restaurar pacotes NuGet - API
+        run: dotnet restore src/TechChallenge4.Api/TechChallenge4.Api.csproj
+
+      - name: Build do projeto - API
+        run: dotnet build src/TechChallenge4.Api/TechChallenge4.Api.csproj --configuration Release --no-restore
+
+      - name: Build do projeto - TesteUnitario
+        run: dotnet build tests/TechChallenge4.Tests/TechChallenge4.Tests.csproj --configuration Release --no-restore
+      
+      - name: Publicar aplicação - API
+        run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release -o src/TechChallenge4.Api/publish
+
+      - name: Executar testes unitários
+        run: dotnet test tests/TechChallenge4.Tests/TechChallenge4.Tests.csproj --configuration Release --no-restore --logger "trx;LogFileName=test_results.trx"
+
+      - name: Restaurar pacotes NuGet - Consumidor
+        run: dotnet restore src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj
+
+      - name: Build do projeto - Consumidor
+        run: dotnet build src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj --configuration Release --no-restore
+      
+      - name: Publicar aplicação - Consumidor
+        run: dotnet publish src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj -c Release -o src/TechChallenge4.Consumidor/publish
+
+      - name: Build imagens dos Containers
+        run: docker-compose -f k8s/docker-compose.yaml build
+
+      - name: Executar o Kurbernetes
+        run: kubectl apply -f k8s/k8s-manifest.yaml
+
+      

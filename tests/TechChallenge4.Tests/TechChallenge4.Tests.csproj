@@ -18,9 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TechChallenge4.Api\TechChallenge4.Api.csproj" />
-    <ProjectReference Include="..\TechChallenge4.Domain\TechChallenge4.Domain.csproj" />
-    <ProjectReference Include="..\TechChallenge4.Infra.Exception\TechChallenge4.Infra.Exception.csproj" />
+    <ProjectReference Include="..\..\src\TechChallenge4.Api\TechChallenge4.Api.csproj" />
+    <ProjectReference Include="..\..\src\TechChallenge4.Domain\TechChallenge4.Domain.csproj" />
+    <ProjectReference Include="..\..\src\TechChallenge4.Infra.Exception\TechChallenge4.Infra.Exception.csproj" />
+  
   </ItemGroup>
 
   <ItemGroup>

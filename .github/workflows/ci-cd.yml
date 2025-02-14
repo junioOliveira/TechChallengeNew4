@@ -63,7 +63,7 @@ jobs:
       # 🔹 EXECUTAR TESTES INTEGRADOS DENTRO DO CONTAINER
 
       - name: Construir imagem do Teste Integrado
-        run: docker build -t test-integrado -f tests/TechChallenge4.TestsIntegrado/Dockerfile .
+        run: docker build -t test-integrado -f tests/TechChallenge4.TestsIntegrado/Dockerfile.TestsIntegrado .
 
       - name: Executar Testes Integrados dentro do Docker
         run: docker run --rm --network host test-integrado

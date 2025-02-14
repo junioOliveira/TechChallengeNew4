@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout do código
@@ -25,19 +25,6 @@ jobs:
         run: dotnet build src/TechChallenge4.Api/TechChallenge4.Api.csproj --configuration Release --no-restore
       
       - name: Publicar aplicação
-        run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release -o out
+        run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release 
 
-      - name: Login no Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ vars.DOCKER_HUB_USERNAME }}
-          password: ${{ vars.DOCKER_HUB_ACCESS_TOKEN }}
-
-      - name: Build Docker image
-        run: docker build -t techchallenge4:latest -f Docker/Dockerfile.Api .
-
-      - name: Run Docker container
-        run: docker run -d -p 8080:80 techchallenge4:latest
-
-      - name: Check container logs
-        run: docker logs $(docker ps -q --filter ancestor=techchallenge4:latest)
+      

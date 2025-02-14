@@ -18,13 +18,22 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restaurar pacotes NuGet
+      - name: Restaurar pacotes NuGet - API
         run: dotnet restore src/TechChallenge4.Api/TechChallenge4.Api.csproj
 
-      - name: Build do projeto
+      - name: Build do projeto - API
         run: dotnet build src/TechChallenge4.Api/TechChallenge4.Api.csproj --configuration Release --no-restore
       
-      - name: Publicar aplicação
+      - name: Publicar aplicação - API
         run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release -o src/TechChallenge4.Api/publish
+
+      - name: Restaurar pacotes NuGet - Consumidor
+        run: dotnet restore src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj
+
+      - name: Build do projeto - Consumidor
+        run: dotnet build src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj --configuration Release --no-restore
+      
+      - name: Publicar aplicação - Consumidor
+        run: dotnet publish src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj -c Release -o src/TechChallenge4.Consumidor/publish
 
       

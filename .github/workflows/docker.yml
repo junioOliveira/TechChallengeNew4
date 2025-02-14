@@ -27,6 +27,9 @@ jobs:
       - name: Publicar aplicação - API
         run: dotnet publish src/TechChallenge4.Api/TechChallenge4.Api.csproj -c Release -o src/TechChallenge4.Api/publish
 
+      - name: Executar testes unitários
+        run: dotnet test tests/TechChallenge4.Tests/TechChallenge4.Tests.csproj --configuration Release --no-restore --logger "trx;LogFileName=test_results.trx"
+
       - name: Restaurar pacotes NuGet - Consumidor
         run: dotnet restore src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj
 

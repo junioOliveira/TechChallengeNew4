@@ -1,12 +1,16 @@
+
 # Usa a imagem oficial do .NET SDK 8
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-# Copia os arquivos do projeto para dentro do container
-COPY . ./
+# Copia apenas os arquivos de projeto (para cache eficiente)
+COPY tests/TechChallenge4.TestsIntegrado/*.csproj ./
 
 # Restaura os pacotes NuGet
 RUN dotnet restore TechChallenge4.TestsIntegrado.csproj
+
+# Copia todo o restante do código para dentro do container
+COPY tests/TechChallenge4.TestsIntegrado/ ./
 
 # Compila o projeto de testes
 RUN dotnet build TechChallenge4.TestsIntegrado.csproj --configuration Release --no-restore

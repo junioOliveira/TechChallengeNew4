@@ -36,4 +36,7 @@ jobs:
       - name: Publicar aplicação - Consumidor
         run: dotnet publish src/TechChallenge4.Consumidor/TechChallenge4.Consumidor.csproj -c Release -o src/TechChallenge4.Consumidor/publish
 
+      - name: Build imagens dos Containers
+        run: docker-compose -f k8s/docker-compose.yaml build
+
       

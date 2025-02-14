@@ -21,6 +21,9 @@ jobs:
       - name: Restaurar pacotes NuGet - API
         run: dotnet restore src/TechChallenge4.Api/TechChallenge4.Api.csproj
 
+      - name: Restaurar pacotes NuGet - Testes
+        run: dotnet restore tests/TechChallenge4.Tests/TechChallenge4.Tests.csproj
+
       - name: Build do projeto - API
         run: dotnet build src/TechChallenge4.Api/TechChallenge4.Api.csproj --configuration Release --no-restore
 

@@ -1,0 +1,15 @@
+# Usa a imagem oficial do .NET SDK 8
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+WORKDIR /app
+
+# Copia os arquivos do projeto para dentro do container
+COPY . ./
+
+# Restaura os pacotes NuGet
+RUN dotnet restore TechChallenge4.TestsIntegrado.csproj
+
+# Compila o projeto de testes
+RUN dotnet build TechChallenge4.TestsIntegrado.csproj --configuration Release --no-restore
+
+# Executa os testes
+CMD ["dotnet", "test", "TechChallenge4.TestsIntegrado.csproj", "--logger", "trx;LogFileName=test_results.trx"]

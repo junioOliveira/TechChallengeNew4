@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7 - Grafana", "7 - Grafana"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge4.Tests", "tests\TechChallenge4.Tests\TechChallenge4.Tests.csproj", "{A3374054-7382-402C-A756-5268EC9E46E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge4.TestsIntegrado", "tests\TechChallenge4.TestsIntegrado\TechChallenge4.TestsIntegrado.csproj", "{C3541F7D-449A-4D78-8F58-1992841B9463}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{A3374054-7382-402C-A756-5268EC9E46E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3374054-7382-402C-A756-5268EC9E46E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3374054-7382-402C-A756-5268EC9E46E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3541F7D-449A-4D78-8F58-1992841B9463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3541F7D-449A-4D78-8F58-1992841B9463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3541F7D-449A-4D78-8F58-1992841B9463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3541F7D-449A-4D78-8F58-1992841B9463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +130,7 @@ Global
 		{01C8ECE2-76D4-47E3-99D1-411891F4CF01} = {3FA723D8-D26E-46FE-8DC0-9C0BAC26B618}
 		{4CECE98A-4E48-4DFE-B37A-76ED53940D32} = {55B9B362-CD2B-40C8-8C9A-AA3B371655CB}
 		{A3374054-7382-402C-A756-5268EC9E46E3} = {E9CC1F32-203F-4675-B464-5874A32E4B72}
+		{C3541F7D-449A-4D78-8F58-1992841B9463} = {E9CC1F32-203F-4675-B464-5874A32E4B72}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2701BCBE-E501-4EE1-AFF4-758CA4496649}

@@ -68,6 +68,7 @@ namespace TechChallenge4.TestsIntegrado
 
             // Assert
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            Console.WriteLine("GetContatos_DeveRetornarNotFoundQuandoNaoHouverNadaNoBD Executado com sucesso.");
         }
 
         [Fact]
